@@ -15,8 +15,6 @@ postround = talkround * 2
 # default start input
 startText = ""
 
-
-
 # data structure init--robot A
 generated_responses_A = []
 past_user_inputs_A = []
@@ -29,11 +27,8 @@ test_B = ""
 
 # req--robot A
 myobj_A = {"inputs":{"generated_responses":generated_responses_A,"past_user_inputs":past_user_inputs_A,"text":test_A}}
-
 # req--robot B
 myobj_B = {"inputs":{"generated_responses":generated_responses_B,"past_user_inputs":past_user_inputs_B,"text":test_B}}
-
-
 
 # Start talking
 for i in range(postround):
@@ -47,8 +42,7 @@ for i in range(postround):
         generated_responses_A.append(gen_res)
 
         myobj_B["inputs"]["text"] = gen_res
-        
-        
+          
     else:
         x = requests.post(url, json = myobj_B, headers=headers)
         res = x.json()
@@ -59,13 +53,11 @@ for i in range(postround):
 
         myobj_A["inputs"]["text"] = gen_res
 
-
 # record
 result = []
 for x in range(talkround):
     result.append(["A:",past_user_inputs_A[x]])
     result.append(["B:",past_user_inputs_B[x]])
-
 
 # write in csv
 with open('botChatSelf.csv', 'w+', encoding='UTF8', newline='') as f:
