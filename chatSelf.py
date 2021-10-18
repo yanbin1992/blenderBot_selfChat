@@ -9,7 +9,7 @@ headers = CaseInsensitiveDict()
 headers["authorization"] = "Bearer api_WekdxpzeyQSGDByUfNgoRzlpOnIbssfRLU"
 
 # each robot reply number
-talkround = 75
+talkround = 50
 postround = talkround * 2
 
 # default start input
@@ -41,7 +41,7 @@ for i in range(postround):
     if i%2 == 0:
         x = requests.post(url, json = myobj_A, headers=headers)
         res = x.json()
-        print(i, "A: ", res["generated_text"])
+        print("{:02d}".format(i), "A: ", res["generated_text"])
         gen_res = res["generated_text"]
         past_user_inputs_A.append(myobj_A["inputs"]["text"])
         generated_responses_A.append(gen_res)
@@ -52,7 +52,7 @@ for i in range(postround):
     else:
         x = requests.post(url, json = myobj_B, headers=headers)
         res = x.json()
-        print(i, "B: ", res["generated_text"])
+        print("{:02d}".format(i), "B: ", res["generated_text"])
         gen_res = res["generated_text"]
         past_user_inputs_B.append(myobj_B["inputs"]["text"])
         generated_responses_B.append(gen_res)
